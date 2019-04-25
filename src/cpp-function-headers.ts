@@ -1,6 +1,6 @@
 interface FunctionParameter {
-  parameterName: string;
-  parameterType: string;
+  name: string;
+  type: string;
   dimensions: number;
 }
 
@@ -28,7 +28,7 @@ export function ExtractFunctionHeader(functionName: string, cppSource: string): 
     let foundParamType = false;
     let foundParamName = false;
     for (let chr of paramMatch) {
-      if (chr === ' ' || chr === '\n' || chr === '\r' || chr === '\t') {
+      if ([' ','\n','\r','\t'].indexOf(chr) > -1) {
         if (paramType.length > 0) {
           foundParamType = true;
         }
@@ -47,15 +47,22 @@ export function ExtractFunctionHeader(functionName: string, cppSource: string): 
         }
       }
     }
+
+    // filter empty strings
+    if (!paramName) {
+      continue;
+    }
+
     parameters.push({
-      parameterName: paramName,
-      parameterType: paramType,
+      name: paramName,
+      type: paramType,
       dimensions: paramType.split('').filter(x => x === '[').length
     });
   }
+
   return {
     functionName: functionName,
     parameters: parameters,
-    returnType: match[1]
+    returnType: match[1] ? match[1] : 'void'
   };
 }
