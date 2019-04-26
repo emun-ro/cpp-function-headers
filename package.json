@@ -1,8 +1,8 @@
 {
   "name": "cpp-function-header",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "",
-  "keywords": [],
+  "keywords": ["cpp", "function", "header", "extract", "parse"],
   "main": "dist/cpp-function-headers.umd.js",
   "module": "dist/cpp-function-headers.es5.js",
   "typings": "dist/types/cpp-function-headers.d.ts",
