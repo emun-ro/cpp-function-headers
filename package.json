@@ -12,7 +12,7 @@
   "author": "Alexandru Ionascu <alexandruionascu.bd@gmail.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/emun-ro/cpp-function-headers"
   },
   "license": "MIT",
   "engines": {
