@@ -1,8 +1,14 @@
 {
   "name": "cpp-function-header",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
-  "keywords": ["cpp", "function", "header", "extract", "parse"],
+  "keywords": [
+    "cpp",
+    "function",
+    "header",
+    "extract",
+    "parse"
+  ],
   "main": "dist/cpp-function-headers.umd.js",
   "module": "dist/cpp-function-headers.es5.js",
   "typings": "dist/types/cpp-function-headers.d.ts",
@@ -74,7 +80,9 @@
     "globals": {
       "ts-jest": {
         "diagnostics": {
-          "ignoreCodes": [2531]
+          "ignoreCodes": [
+            2531
+          ]
         }
       }
     }
@@ -92,9 +100,9 @@
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
     "@types/jest": "^23.3.2",
-    "@types/node": "^10.11.0",
+    "@types/node": "^10.14.6",
     "colors": "^1.3.2",
-    "commitizen": "^3.0.0",
+    "commitizen": "^3.1.1",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
@@ -118,10 +126,10 @@
     "travis-deploy-once": "^5.0.9",
     "ts-jest": "^23.10.2",
     "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
+    "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.12.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.4.5"
   }
 }
