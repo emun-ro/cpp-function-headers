@@ -48,5 +48,7 @@ interface FunctionHeader {
   functionName: string;
   returnType: string;
   parameters: FunctionParameter[];
+  startIndex: number;
+  endIndex: number;
 }
 ```
