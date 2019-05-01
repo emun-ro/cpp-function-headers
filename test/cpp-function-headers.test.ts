@@ -1,8 +1,4 @@
-import {
-  ExtractFunctionHeader,
-  FunctionHeader,
-  FunctionParameter
-} from '../src/cpp-function-headers'
+import { ExtractFunctionHeader } from '../src/cpp-function-headers'
 
 let code1 = `
 #include<iostream>
@@ -49,6 +45,10 @@ it('checks basic function header to match function name', () => {
 
   header = ExtractFunctionHeader('f1', code2)
   expect(header.functionName).toBe('f1')
+})
+
+it('returns null if the function template is not found', () => {
+  expect(ExtractFunctionHeader('no_function', code1)).toBeNull()
 })
 
 it('should match parameter length', () => {
@@ -137,4 +137,22 @@ it('should match return type', () => {
 
   header = ExtractFunctionHeader('f3', code2)
   expect(header.returnType).toBe('int')
+})
+
+it('should extract start and end index correctly', () => {
+  let header = ExtractFunctionHeader('add', code1)
+  expect(header.startIndex).toBe(64)
+  expect(header.endIndex).toBe(82)
+
+  header = ExtractFunctionHeader('padded_sum', code1)
+  expect(header.startIndex).toBe(127)
+  expect(header.endIndex).toBe(142)
+
+  header = ExtractFunctionHeader('f2', code2)
+  expect(header.startIndex).toBe(91)
+  expect(header.endIndex).toBe(94)
+
+  header = ExtractFunctionHeader('f3', code2)
+  expect(header.startIndex).toBe(113)
+  expect(header.endIndex).toBe(127)
 })

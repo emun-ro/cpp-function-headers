@@ -8,6 +8,8 @@ export interface FunctionHeader {
   functionName: string
   returnType: string
   parameters: FunctionParameter[]
+  startIndex: number
+  endIndex: number
 }
 
 /*
@@ -20,9 +22,28 @@ export function ExtractFunctionHeader(
 ): FunctionHeader | null {
   let regex = `([A-Za-z0-9_]+)[\\n\\r\\s]*${functionName}[\\n\\r\\s]*\((.|\\n|\\s|\\r)*?\)[\\n\\r\\s]*{`
   let match = cppSource.match(regex)
-  if (!match) {
+
+  if (!match || !match.index) {
     return null
   }
+
+  let startBlockIndex = match.index + match[0].indexOf('{')
+  let endBlockIndex = -1
+  // now we find the end of the function block
+  let depth = 1
+  for (let i = startBlockIndex + 1; i < cppSource.length; i++) {
+    if (cppSource[i] === '{') {
+      depth++
+    } else if (cppSource[i] === '}') {
+      depth--
+    }
+
+    if (depth === 0) {
+      endBlockIndex = i
+      break
+    }
+  }
+
   let paramMatches = match[2]
     .replace('(', '')
     .replace(')', '')
@@ -69,6 +90,8 @@ export function ExtractFunctionHeader(
   return {
     functionName: functionName,
     parameters: parameters,
-    returnType: match[1] ? match[1] : 'void'
+    returnType: match[1] ? match[1] : 'void',
+    startIndex: startBlockIndex,
+    endIndex: endBlockIndex
   }
 }
