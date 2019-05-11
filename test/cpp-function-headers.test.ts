@@ -141,18 +141,18 @@ it('should match return type', () => {
 
 it('should extract start and end index correctly', () => {
   let header = ExtractFunctionHeader('add', code1)
-  expect(header.startIndex).toBe(64)
+  expect(header.startIndex).toBe(42)
   expect(header.endIndex).toBe(82)
 
   header = ExtractFunctionHeader('padded_sum', code1)
-  expect(header.startIndex).toBe(127)
+  expect(header.startIndex).toBe(84)
   expect(header.endIndex).toBe(142)
 
   header = ExtractFunctionHeader('f2', code2)
-  expect(header.startIndex).toBe(91)
+  expect(header.startIndex).toBe(67)
   expect(header.endIndex).toBe(94)
 
   header = ExtractFunctionHeader('f3', code2)
-  expect(header.startIndex).toBe(113)
+  expect(header.startIndex).toBe(97)
   expect(header.endIndex).toBe(127)
 })

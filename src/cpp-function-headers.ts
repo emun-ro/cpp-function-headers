@@ -27,11 +27,11 @@ export function ExtractFunctionHeader(
     return null
   }
 
-  let startBlockIndex = match.index + match[0].indexOf('{')
+  let startBlockIndex = match.index
   let endBlockIndex = -1
   // now we find the end of the function block
   let depth = 1
-  for (let i = startBlockIndex + 1; i < cppSource.length; i++) {
+  for (let i = startBlockIndex + match[0].indexOf('{') + 1; i < cppSource.length; i++) {
     if (cppSource[i] === '{') {
       depth++
     } else if (cppSource[i] === '}') {
